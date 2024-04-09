@@ -1,45 +1,52 @@
 package LeetCode.Easy._225用队列实现栈;
 
 import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Queue;
 
 /**
  * ClassName: MyStack
  * Description: 用队列实现栈
  * Author Inamikanju
- * Create 2023/11/28 20:12
+ * Create 2024/4/5 17:20
  * Version 1.0
  */
 public class MyStack {
-    private Queue<Integer> queue1;//offer poll
-    private Queue<Integer> queue2;
+    private final Queue<Integer> q1;
+    private final Queue<Integer> q2;
 
     public MyStack() {
-        queue1 = new ArrayDeque<>();
-        queue2 = new ArrayDeque<>();
-    }
-
-    private void transfer(Queue<Integer> queue1, Queue<Integer> queue2) {
-        while (!queue1.isEmpty()) {
-            queue2.offer(queue1.poll());
-        }
+        this.q1 = new ArrayDeque<>();
+        this.q2 = new ArrayDeque<>();
     }
 
     public void push(int x) {
-        transfer(queue1, queue2);
-        queue1.offer(x);
-        transfer(queue2, queue1);
+        change(q1, q2);
+        q1.offer(x);
+        change(q2, q1);
+    }
+
+    private void change(Queue<Integer> q1, Queue<Integer> q2) {
+        while (!q1.isEmpty()) {
+            q2.offer(q1.poll());
+        }
     }
 
     public int pop() {
-        return queue1.poll();
+        if (!q1.isEmpty()) {
+            return q1.poll();
+        }
+        return -1;
     }
 
     public int top() {
-        return queue1.peek();
+        if (!q1.isEmpty()) {
+            return q1.peek();
+        }
+        return -1;
     }
 
     public boolean empty() {
-        return queue1.isEmpty();
+        return q1.isEmpty();
     }
 }

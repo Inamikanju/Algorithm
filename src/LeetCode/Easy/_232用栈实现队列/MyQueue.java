@@ -4,45 +4,48 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 /**
- * ClassName: Solution
+ * ClassName: MyQueue
  * Description: 用栈实现队列
  * Author Inamikanju
- * Create 2023/11/28 19:57
+ * Create 2024/4/5 17:20
  * Version 1.0
  */
 public class MyQueue {
-    private Deque<Integer> stack1;
-    private Deque<Integer> stack2;
+    private final Deque<Integer> s1;
+    private final Deque<Integer> s2;
 
     public MyQueue() {
-        stack1 = new ArrayDeque<>();
-        stack2 = new ArrayDeque<>();
+        s1 = new ArrayDeque<>();
+        s2 = new ArrayDeque<>();
     }
 
     public void push(int x) {
-        stack1.push(x);
+        change(s1, s2);
+        s1.push(x);
+        change(s2, s1);
     }
 
-    private void transfer() {
-        if (!stack2.isEmpty()) {
-            return;
-        }
-        while (!stack1.isEmpty()) {
-            stack2.push(stack1.pop());
+    private void change(Deque<Integer> s1, Deque<Integer> s2) {
+        while (!s1.isEmpty()) {
+            s2.push(s1.pop());
         }
     }
 
     public int pop() {
-        transfer();
-        return stack2.pop();
+        if (!s1.isEmpty()) {
+            return s1.pop();
+        }
+        return -1;
     }
 
     public int peek() {
-        transfer();
-        return stack2.peek();
+        if (!s1.isEmpty()) {
+            return s1.peek();
+        }
+        return -1;
     }
 
     public boolean empty() {
-        return stack1.isEmpty() && stack2.isEmpty();
+        return s1.isEmpty();
     }
 }
