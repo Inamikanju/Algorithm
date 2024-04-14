@@ -1,4 +1,4 @@
-package LeetCode.hot100.链表._148排序链表;
+package LeetCode.Mid._148排序链表;
 
 import DataStructure.ListNode;
 
@@ -7,7 +7,7 @@ import DataStructure.ListNode;
  * Description: 排序链表
  * Author Inamikanju
  * Create 2024/4/14 16:20
- * Version 1.1
+ * Version 1.0
  */
 public class Solution {
     public ListNode sortList(ListNode head) {
