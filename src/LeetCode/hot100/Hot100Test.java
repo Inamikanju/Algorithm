@@ -2,7 +2,7 @@ package LeetCode.hot100;
 
 import DataStructure.ListNode;
 import LeetCode.hot100.链表._146LRU缓存.LRUCache;
-import LeetCode.hot100.多维动态规划._5最长回文子串.Solution;
+import LeetCode.hot100.回溯._79单词搜索.Solution;
 import org.junit.Test;
 
 
@@ -15,6 +15,8 @@ public class Hot100Test {
         int[] nums1 = {11, 81, 94, 43, 3};
 
         int[][] matrix = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
+        char[][] board ={{'A','B','C','E'},{'S','F','C','S'},{'A','D','E','E'}};
+        String word = "SEE";
 
         String s = "aaaaa";
         String t = "uau";
@@ -25,8 +27,7 @@ public class Hot100Test {
 
 
         Solution solution = new Solution();
-        var ans = solution.longestPalindrome(s);
-
+        var ans = solution.exist(board,word);
 //        System.out.println(ListToString(ans));
         System.out.println(ans);
     }
